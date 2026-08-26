@@ -7,10 +7,18 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch src/index.mjs",
-    "css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css"
+    "start": "concurrently \"pnpm run dev:css\" \"pnpm run dev\"",
+    "dev": "node --watch src/index.mjs",
+    "dev:css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css --watch"
   },
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "autoprefixer": "^10.5.4",
+    "concurrently": "^9.0.0",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3"
   }
 }
