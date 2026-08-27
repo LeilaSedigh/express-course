@@ -1,14 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HomePage</title>
-    <link rel="stylesheet" href="styles/output.css"/>
-</head>
-<body>
-    <h2 class="text-blue-500">
-        HomePage
-    </h2>
-</body>
+    <link rel="stylesheet" href="styles/output.css" />
+  </head>
+  <body class="flex flex-col gap-2 p-4 h-dvh">
+    <header class="border p-4 flex justify-between">
+      <menu>
+        <ul class="flex gap-2">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </menu>
+      <menu>
+        <ul class="flex gap-2">
+          <li><a href="/login">login</a></li>
+          <li><a href="/register">Register</a></li>
+        </ul>
+      </menu>
+    </header>
+    <main class="border p-4 h-full">
+      <h1 class="text-3xl">HomePage</h1>
+    </main>
+    <footer class="border p-4">
+      <div>NodeJs Course</div>
+    </footer>
+  </body>
 </html>
