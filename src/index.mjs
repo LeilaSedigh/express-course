@@ -8,8 +8,7 @@ const app = express();
 
 app.use(express.static("public"));
 
-app.engine('leila' , renderTemplate)
-app.set("view engine" , "leila")
+app.set("view engine" , "ejs")
 app.set("views" , path.resolve(import.meta.dirname , 'views'))
 
 
