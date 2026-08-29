@@ -1,23 +1,15 @@
-import path from 'path'
-import fs from 'fs'
+import fs from "fs";
 
-export default (req, res, next) => {
-  res.renderTemplate = function renderTemplate(filename,parms) {
-    const filePath = path.resolve(
-      import.meta.dirname,
-      "views",
-      "..",
-      `${filename}.html`,
-    );
-    let view = fs.readFileSync(filePath, "utf-8");
-    console.log("view", view);
+export default (filePath, parms, cb) => {
+  let view = fs.readFileSync(filePath, "utf-8");
+  console.log("view", view);
 
-    const entries = Object.entries(parms);
-    entries.forEach(([key, value]) => {
+  const entries = Object.entries(parms);
+
+  entries.forEach(([key, value]) => {
+    if (typeof value === "string") {
       view = view.replace(`#${key}#`, value);
-    });
-
-    res.send(view)
-  };
-  next();
-}
+    }
+  });
+  return cb(null, view);
+};
