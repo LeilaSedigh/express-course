@@ -6,20 +6,7 @@
     <title>HomePage</title>
     <link rel="stylesheet" href="styles/output.css" />
   </head>
+      <%- include("../includes/header.ejs") %>
   <body class="flex flex-col gap-2 p-4 h-dvh">
-    <header class="border p-4 flex justify-between">
-      <menu>
-        <ul class="flex gap-2">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </menu>
-      <menu>
-        <ul class="flex gap-2">
-          <li><a href="/login">login</a></li>
-          <li><a href="/register">Register</a></li>
-        </ul>
-      </menu>
-    </header>
     <main class="border p-4 h-full flex flex-col gap-4">
-      <h1 class="text-3xl"><%= title %></h1>
+      <%- include("../includes/title.ejs") %>
