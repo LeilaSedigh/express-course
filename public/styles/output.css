@@ -198,12 +198,6 @@
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
-  .text-green-500 {
-    color: var(--color-green-500);
-  }
-  .text-red-500 {
-    color: var(--color-red-500);
-  }
 }
 @property --tw-border-style {
   syntax: "*";
