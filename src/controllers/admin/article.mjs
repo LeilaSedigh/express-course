@@ -1,6 +1,9 @@
 class ArticleController {
     list(req, res ) {
-        res.send("Admin Article")
+        res.render("/admin/article/list" , {
+            title: "Article List",
+            content: "Salam"
+        })
     }
 }
 
