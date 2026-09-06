@@ -26,6 +26,9 @@ class ArticleController {
             title: "Create new Article"
         })
     }
+    add(req,res){
+        res.redirect("/admin/article")
+    }
 }
 
 export default new ArticleController();
