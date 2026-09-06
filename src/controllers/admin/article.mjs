@@ -27,6 +27,7 @@ class ArticleController {
         })
     }
     add(req,res){
+        console.log(req.body)
         res.redirect("/admin/article")
     }
 }

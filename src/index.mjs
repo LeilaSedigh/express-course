@@ -6,6 +6,7 @@ import path from "path"
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.urlencoded({extended: true}))
 
 app.set("view engine" , "ejs")
 app.set("views" , path.resolve(import.meta.dirname , 'views'))
