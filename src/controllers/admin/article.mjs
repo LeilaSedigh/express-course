@@ -1,20 +1,16 @@
+const articles =[]
+
 class ArticleController {
     list(req, res) {
         res.render("admin/article/list", {
             title: "Article List",
-            articles: [
-                { id: 1, title: "Article" },
-                { id: 2, title: "Article 2" },
-            ],
+            articles
         });
 
     }
     get(req, res) {
-        const article = {
-            id: 1,
-            title: "Article",
-            text: "Salam man de to yar ghadimi"
-        }
+        const {id} = req.params;
+        const article = articles.find(article => article.id === +id)
 
         res.render("admin/article/detail", {
             title: article.title,
@@ -28,6 +24,8 @@ class ArticleController {
     }
     add(req,res){
         console.log(req.body)
+
+        articles.push({id:Date.now() ,...req.body})
         res.redirect("/admin/article")
     }
 }
