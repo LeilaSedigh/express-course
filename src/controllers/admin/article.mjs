@@ -1,4 +1,6 @@
-const articles =[]
+import { NotFoundError } from "../../utils/errors.mjs";
+
+const articles = []
 
 class ArticleController {
     list(req, res) {
@@ -9,23 +11,27 @@ class ArticleController {
 
     }
     get(req, res) {
-        const {id} = req.params;
+        const { id } = req.params;
         const article = articles.find(article => article.id === +id)
+
+        if (!article) {
+            throw new NotFoundError("Article Not Found")
+        }
 
         res.render("admin/article/detail", {
             title: article.title,
             article
         })
     }
-    create(req ,res){
-        res.render('admin/article/create' ,{
+    create(req, res) {
+        res.render('admin/article/create', {
             title: "Create new Article"
         })
     }
-    add(req,res){
+    add(req, res) {
         console.log(req.body)
 
-        articles.push({id:Date.now() ,...req.body})
+        articles.push({ id: Date.now(), ...req.body })
         res.redirect("/admin/article")
     }
 }
