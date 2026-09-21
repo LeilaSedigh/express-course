@@ -11,6 +11,13 @@ app.use(express.urlencoded({extended: true}))
 app.set("view engine" , "ejs")
 app.set("views" , path.resolve(import.meta.dirname , 'views'))
 
+app.use((req,res,next)=>{
+  if(req.method === "POST" && req.body._method){
+    req.method = req.body._method
+  }
+
+  next()
+})
 
 app.use(routes);
 app.use(errorHandler);

@@ -1,6 +1,7 @@
 <%- include("../../layouts/main-top.ejs") %>
 <div>
-  <form action="/admin/article/<%= article.id %>" method="put">
+  <form action="/admin/article/<%= article.id %>" method="post">
+    <input type="hidden" value="PUT" name="_method"/>
     <div class="flex flex-col gap-5">
       <div class="flex justify-between w-[50%]">
         <label for="title">Title</label>
