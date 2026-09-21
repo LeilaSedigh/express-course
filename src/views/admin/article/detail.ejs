@@ -5,7 +5,8 @@
   </p>
 
   <hr class="my-5" />
-  <div> 
+  <div class="flex gap-2 flex-col"> 
+    <a href="/admin/article/edit/<%= article.id %>" class="text-blue-600 underline">Edit</a>
     <a href="/admin/article" class="text-blue-600 underline">Back to list </a>
   </div>
   <%- include("../../layouts/main-bottom.ejs") %>
