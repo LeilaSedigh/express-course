@@ -1,6 +1,6 @@
 import { NotFoundError } from "../../utils/errors.mjs";
 
-const articles = []
+let articles = []
 
 class ArticleController {
     list(req, res) {
@@ -72,7 +72,7 @@ class ArticleController {
         const newArticles = articles.filter(article => article.id !== +id)
 
         articles = newArticles
-        res.redirect("admin/article")
+        res.redirect("/admin/article")
     }
 }
 
