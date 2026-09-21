@@ -8,7 +8,6 @@ class ArticleController {
             title: "Article List",
             articles
         });
-
     }
     get(req, res) {
         const { id } = req.params;
