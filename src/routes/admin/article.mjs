@@ -9,5 +9,6 @@ router.post("/add", ArticleController.add)
 router.get("/:id", ArticleController.get)
 router.get("/edit/:id", ArticleController.edit)
 router.put("/:id", ArticleController.update)
+router.delete("/:id", ArticleController.delete)
 
 export default router

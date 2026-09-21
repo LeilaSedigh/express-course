@@ -48,7 +48,7 @@ class ArticleController {
     }
     update(req, res) {
         const { id } = req.params;
-        const { title ,text } = req.body
+        const { title, text } = req.body
 
         const article = articles.find(article => article.id === +id)
         if (!article) {
@@ -60,6 +60,19 @@ class ArticleController {
 
         res.redirect(`/admin/article/${article.id}`)
 
+    }
+    delete(req, res) {
+        const { id } = req.params;
+
+        const article = articles.find(article => article.id === +id)
+        if (!article) {
+            throw new NotFoundError("Article Not Found")
+        }
+
+        const newArticles = articles.filter(article => article.id !== +id)
+
+        articles = newArticles
+        res.redirect("admin/article")
     }
 }
 

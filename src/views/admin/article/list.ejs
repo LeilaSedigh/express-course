@@ -18,6 +18,10 @@
         <td class="border border-gray-300 px-4 py-2 text-center flex gap-2">
           <a href="/admin/article/<%= article.id%>" class="text-blue-600">Show</a>
           <a href="/admin/article/edit/<%= article.id%>" class="text-blue-600">Edit</a>
+          <form action="/admin/article/<%= article.id%>" method="POST">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button class="text-blue-600" type="submit">Delete</button>
+          </form>
         </td>
       </tr>
       <%} %>
