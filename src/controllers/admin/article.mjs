@@ -69,7 +69,7 @@ class ArticleController {
             throw new NotFoundError("Article Not Found")
         }
 
-        const articleId = articles.findIndex(article => article.id !== +id)
+        const articleId = articles.findIndex(article => article.id == +id)
 
         articles.splice(articleId, 1)
         res.redirect("/admin/article")
