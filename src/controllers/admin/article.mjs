@@ -1,17 +1,20 @@
+import Article from "../../models/article.mjs";
 import { NotFoundError } from "../../utils/errors.mjs";
 
 const articles = []
 
 class ArticleController {
-    list(req, res) {
+    async list(req, res) {
+        const articles = await Article.findAll()
+
         res.render("admin/article/list", {
             title: "Article List",
             articles
         });
     }
-    get(req, res) {
+    async get(req, res) {
         const { id } = req.params;
-        const article = articles.find(article => article.id === +id)
+        const article = await Article.findByPk(id)
 
         if (!article) {
             throw new NotFoundError("Article Not Found")
@@ -27,17 +30,17 @@ class ArticleController {
             title: "Create new Article"
         })
     }
-    add(req, res) {
-        console.log(req.body)
+    async add(req, res) {
+        const { title, text } = req.body;
 
-        articles.push({ id: Date.now(), ...req.body })
+        await Article.create({ title, text })
         res.redirect("/admin/article/")
     }
 
-    edit(req, res) {
+    async edit(req, res) {
         const { id } = req.params;
 
-        const article = articles.find(article => article.id === +id)
+        const article = await Article.findByPk(id)
         if (!article) {
             throw new NotFoundError("Article Not Found")
         }
@@ -46,32 +49,33 @@ class ArticleController {
             article
         })
     }
-    update(req, res) {
+    async update(req, res) {
         const { id } = req.params;
         const { title, text } = req.body
 
-        const article = articles.find(article => article.id === +id)
+        const article = await Article.findByPk(id)
         if (!article) {
             throw new NotFoundError("Article Not Found")
         }
 
         article.title = title;
         article.text = text;
+        await article.save()
 
         res.redirect(`/admin/article/${article.id}`)
 
     }
-    delete(req, res) {
+    async delete(req, res) {
         const { id } = req.params;
 
-        const article = articles.find(article => article.id === +id)
+        const article = await Article.findByPk(id)
+
         if (!article) {
             throw new NotFoundError("Article Not Found")
         }
 
-        const articleId = articles.findIndex(article => article.id == +id)
+        await article.destroy();
 
-        articles.splice(articleId, 1)
         res.redirect("/admin/article")
     }
 }
