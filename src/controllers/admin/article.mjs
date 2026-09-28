@@ -34,7 +34,6 @@ class ArticleController {
         await Article.create({ title, text })
         res.redirect("/admin/article/")
     }
-
     async edit(req, res) {
         const { id } = req.params;
 
