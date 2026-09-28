@@ -1,5 +1,3 @@
-import { NotFoundError } from "../utils/errors.mjs";
-
 export function home(req, res) {
   res.render("index", { title: "Home age", content: "This is Home Page" });
 }
