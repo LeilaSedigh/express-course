@@ -1,8 +1,6 @@
 import Article from "../../models/article.mjs";
 import { NotFoundError } from "../../utils/errors.mjs";
 
-const articles = []
-
 class ArticleController {
     async list(req, res) {
         const articles = await Article.findAll()
