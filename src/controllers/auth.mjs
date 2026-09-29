@@ -16,11 +16,13 @@ class AuthController {
         }
         let user;
         try {
-            user = await User.create({ username, password })
+            user = await User.create({ username, password });
         } catch (error) {
-            if(error.original.code==="ER_OUP_ENTRY"){
+            if (error?.original?.code === "ER_DUP_ENTRY") {
                 throw new BadRequestError("Username is duplicated!")
             }
+            throw error;
+
         }
         res.json(user)
     }
