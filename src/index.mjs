@@ -4,7 +4,8 @@ import errorHandler from "./middlewares/error-handler.mjs";
 import path from "path"
 import overrideMethod from "./middlewares/override-method.mjs";
 import { sequelize } from "./config/database.mjs";
-import User from './models/user.mjs'
+import session from "express-session";
+
 
 const app = express();
 await sequelize.authenticate();
@@ -15,6 +16,10 @@ app.use(express.urlencoded({ extended: true }))
 
 app.set("view engine", "ejs")
 app.set("views", path.resolve(import.meta.dirname, 'views'))
+
+app.use(session({
+  secret: "your-super-secret-key;lfvdf;jkbndf/fvbkdfjn;vsdfvfv", 
+}))
 
 app.use(overrideMethod)
 
