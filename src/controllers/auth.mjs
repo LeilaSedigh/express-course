@@ -1,5 +1,6 @@
 import User from "../models/user.mjs";
 import { BadRequestError } from "../utils/errors.mjs";
+import bcrypt from 'bcrypt'
 
 class AuthController {
     loginPage(req, res) {
@@ -39,6 +40,7 @@ class AuthController {
             throw new BadRequestError("Username and Password are required!")
         }
         try {
+            const hashPassword = bcrypt.hashSync(password , 12)
             const user = await User.create({ username, password });
             res.json(user)
 
