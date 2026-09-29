@@ -4,9 +4,9 @@ import errorHandler from "./middlewares/error-handler.mjs";
 import path from "path"
 import overrideMethod from "./middlewares/override-method.mjs";
 import { sequelize } from "./config/database.mjs";
+import User from './models/user.mjs'
 
 const app = express();
-
 await sequelize.authenticate();
 await sequelize.sync();
 
