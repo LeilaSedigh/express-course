@@ -12,7 +12,7 @@ router.use("/", auth);
 router.use("/admin", admin)
 
 // 404 Middleware 
-router.use((req,res , next) => {
+router.all(/^.*$/,(req,res , next) => {
    throw new NotFoundError()
 });
 
