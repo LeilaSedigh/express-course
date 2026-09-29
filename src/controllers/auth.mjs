@@ -24,7 +24,7 @@ class AuthController {
             throw new BadRequestError("Credential Error")
         }
 
-
+        user.setDataValue("password", undefined)
         res.json(user)
     }
 
@@ -44,6 +44,7 @@ class AuthController {
 
             const user = await User.create({ username, password: hashPassword });
             res.json(user)
+            user.setDataValue("password", undefined)
 
         } catch (error) {
             if (error?.original?.code === "ER_DUP_ENTRY") {
@@ -52,6 +53,7 @@ class AuthController {
             throw error;
 
         }
+
     }
 }
 export default new AuthController()
