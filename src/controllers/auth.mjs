@@ -20,7 +20,7 @@ class AuthController {
             throw new BadRequestError("Credential Error")
         }
 
-        if (user.password !== password) {
+        if (!bcrypt.compareSync(password, user.password)) {
             throw new BadRequestError("Credential Error")
         }
 
@@ -40,8 +40,9 @@ class AuthController {
             throw new BadRequestError("Username and Password are required!")
         }
         try {
-            const hashPassword = bcrypt.hashSync(password , 12)
-            const user = await User.create({ username, password });
+            const hashPassword = bcrypt.hashSync(password, 12)
+
+            const user = await User.create({ username, password: hashPassword });
             res.json(user)
 
         } catch (error) {
