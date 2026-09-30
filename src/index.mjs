@@ -6,10 +6,17 @@ import overrideMethod from "./middlewares/override-method.mjs";
 import { sequelize } from "./config/database.mjs";
 import session from "express-session";
 import { RedisStore } from 'connect-redis'
+import { createClient } from "redis"
+
+// Initialize client.
+const redisClient = createClient({
+  url: "redis://localhost:6377",
+});
+redisClient.connect().catch(console.error)
 
 // initialize store 
-let redisStore = new RedisStore({
-  client: redisStore,
+const redisStore = new RedisStore({
+  client: redisClient,
   prefix: "myapp"
 })
 
