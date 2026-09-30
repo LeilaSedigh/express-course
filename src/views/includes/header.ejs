@@ -1,16 +1,28 @@
 <header class="border p-4 flex justify-between">
-    <% const links = [{href:"/", title: "Home"},{href:"/about", title: "About"}] %>
+  <% const links = [{href:"/", title: "Home"},{href:"/about", title: "About"}] %>
   <menu>
     <ul class="flex gap-2">
-        <% for ( const link of links ){ %>
-         <li><a href= <%= link.href %>><%= link.title %></a></li>
-            <% } %>
+      <% for ( const link of links ){ %>
+      <li><a href=<%= link.href %>><%= link.title %></a></li>
+      <% } %>
     </ul>
   </menu>
   <menu>
+    <% if(locals.user) {%>
+    <div class="flex gap-3">
+      <div class="flex gap-1">
+        <div>Welcome</div>
+        <div class="text-blue-500"><%= user.username %></div>
+      </div>
+      <div class="text-red-500 cursor-pointer">
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+    <% } else { %>
     <ul class="flex gap-2">
       <li><a href="/login">login</a></li>
       <li><a href="/register">Register</a></li>
     </ul>
+    <% } %>
   </menu>
 </header>

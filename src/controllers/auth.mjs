@@ -4,6 +4,9 @@ import bcrypt from 'bcrypt'
 
 class AuthController {
     loginPage(req, res) {
+        if (req.user) {
+            return res.redirect("/")
+        }
         res.render('auth/login', {
             title: "Login"
         })
@@ -57,6 +60,20 @@ class AuthController {
 
         }
 
+    }
+
+    logout(req, res) {
+        if (req.user) {
+            return res.redirect("/")
+        }
+        req.session.destroy(error => {
+            if (!error) {
+                res.redirect(req.headers.referer)
+            }
+            else {
+                throw error
+            }
+        })
     }
 }
 export default new AuthController()

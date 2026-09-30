@@ -7,7 +7,8 @@ class ArticleController {
 
         res.render("admin/article/list", {
             title: "Article List",
-            articles
+            articles,
+            user: req.user,
         });
     }
     async get(req, res) {
@@ -20,12 +21,14 @@ class ArticleController {
 
         res.render("admin/article/detail", {
             title: article.title,
-            article
+            article,
+            user: req.user,
         })
     }
     create(req, res) {
         res.render('admin/article/create', {
-            title: "Create new Article"
+            title: "Create new Article",
+            user: req.user,
         })
     }
     async add(req, res) {
@@ -43,7 +46,8 @@ class ArticleController {
         }
         res.render('admin/article/edit', {
             title: `Edit Article ${article.title}`,
-            article
+            article,
+            user: req.user,
         })
     }
     async update(req, res) {

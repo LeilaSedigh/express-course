@@ -7,6 +7,7 @@ import { sequelize } from "./config/database.mjs";
 import session from "express-session";
 import { RedisStore } from 'connect-redis'
 import { createClient } from "redis"
+import auth from "./middlewares/auth.mjs";
 
 // Initialize client.
 const redisClient = createClient({
@@ -37,8 +38,8 @@ app.use(session({
   secret: "your-super-secret-key;lfvdf;jkbndf/fvbkdfjn;vsdfvfv",
 }))
 
+app.use(auth)
 app.use(overrideMethod)
-
 app.use(routes);
 app.use(errorHandler);
 
