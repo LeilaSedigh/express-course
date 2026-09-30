@@ -32,6 +32,8 @@ app.set("views", path.resolve(import.meta.dirname, 'views'))
 
 app.use(session({
   store: redisStore,
+  resave: false,
+  saveUninitialized: true,
   secret: "your-super-secret-key;lfvdf;jkbndf/fvbkdfjn;vsdfvfv",
 }))
 

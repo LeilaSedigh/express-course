@@ -1,6 +1,5 @@
 export function home(req, res) {
-  console.log(req.session.user)
-  res.render("index", { title: "Home age", content: "This is Home Page" });
+  res.render("index", { title: req.session.user?.username, content: "This is Home Page" });
 }
 
 export function about(req, res) {
