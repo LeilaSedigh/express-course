@@ -5,7 +5,13 @@ import path from "path"
 import overrideMethod from "./middlewares/override-method.mjs";
 import { sequelize } from "./config/database.mjs";
 import session from "express-session";
+import { RedisStore } from 'connect-redis'
 
+// initialize store 
+let redisStore = new RedisStore({
+  client: redisStore,
+  prefix: "myapp"
+})
 
 const app = express();
 await sequelize.authenticate();
@@ -18,7 +24,8 @@ app.set("view engine", "ejs")
 app.set("views", path.resolve(import.meta.dirname, 'views'))
 
 app.use(session({
-  secret: "your-super-secret-key;lfvdf;jkbndf/fvbkdfjn;vsdfvfv", 
+  store: redisStore,
+  secret: "your-super-secret-key;lfvdf;jkbndf/fvbkdfjn;vsdfvfv",
 }))
 
 app.use(overrideMethod)
