@@ -63,7 +63,7 @@ class AuthController {
     }
 
     logout(req, res) {
-        if (req.user) {
+        if (!req.user) {
             return res.redirect("/")
         }
         req.session.destroy(error => {
