@@ -9,6 +9,4 @@ router.get("/login", AuthCotroler.loginPage)
 router.post("/login", AuthCotroler.login)
 router.get("/logout", AuthCotroler.logout)
 
-
-
 export default router
