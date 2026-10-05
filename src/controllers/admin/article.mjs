@@ -34,7 +34,7 @@ class ArticleController {
     async add(req, res) {
         const { title, text } = req.body;
 
-        await Article.create({ title, text })
+        await Article.create({ title, text,userId: req.user.id })
         res.redirect("/admin/article/")
     }
     async edit(req, res) {
