@@ -3,9 +3,12 @@
   <p>
     <%= article.text %>
   </p>
-
+  <div class="flex gap-2">
+    <div>Auther</div>
+    <div><%= article.user.username %></div>
+  </div>
   <hr class="my-5" />
-  <div class="flex gap-2 flex-col"> 
+  <div class="flex gap-2 flex-col">
     <a href="/admin/article/edit/<%= article.id %>" class="text-blue-600 underline">Edit</a>
     <a href="/admin/article" class="text-blue-600 underline">Back to list </a>
   </div>

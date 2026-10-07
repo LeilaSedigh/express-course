@@ -23,6 +23,7 @@ const redisStore = new RedisStore({
 
 const app = express();
 await sequelize.authenticate();
+// await sequelize.sync({alter: true});
 await sequelize.sync();
 
 app.use(express.static("public"));
