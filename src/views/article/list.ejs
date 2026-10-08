@@ -1,42 +1,15 @@
-<%- include("../../layouts/main-top.ejs") %>
-<div>
-  <div class="my-4">
-    <a href="/admin/article/create" class="text-blue-600 underline"> Create new article</a>
-  </div>
-  <table class="border-collapse border border-gray-400 w-full">
-    <thead>
-      <tr>
-        <th class="border border-gray-300 px-4 py-2">Id</th>
-        <th class="border border-gray-300 px-4 py-2">Title</th>
-        <th class="border border-gray-300 px-4 py-2">Author</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (const article of articles) {%>
-      <tr>
-        <td class="border border-gray-300 px-4 py-2 text-center"><%= article.id%></td>
-        <td class="border border-gray-300 px-4 py-2 text-center"><%= article.title%></td>
-        <td class="border border-gray-300 px-4 py-2 text-center"><%= article.user.username%></td>
-        <td class="border border-gray-300 px-4 py-2 text-center flex gap-2">
-          <a href="/admin/article/<%= article.id%>" class="text-blue-600">Show</a>
-          <a href="/admin/article/edit/<%= article.id%>" class="text-blue-600">Edit</a>
-          <form action="/admin/article/<%= article.id%>" method="POST">
-            <input type="hidden" name="_method" value="DELETE" />
-            <button class="text-blue-600" type="submit">Delete</button>
-          </form>
-        </td>
-      </tr>
-      <%} %>
-    </tbody>
-  </table>
+<%- include("../layouts/main-top.ejs") %>
+
+<div class="my-4">
   <div>
-    <ul class="flex gap-2 my-5">
-      <% for (let i = 1; i<= pages;i++){%>
-      <li class="<%= i=== page ? "text-green-500" : "" %>"</li>
-        <a href="?page=<%= i %>"><%= i %></a>
-      </li>
-      <% } %>
-    </ul>
+    <% for (const article of items) { %>
+      <div>
+        <h3><%= article.title %></h3>
+      </div>
+    <% } %>
   </div>
+
+  <%- include("../includes/pagination.ejs") %>
 </div>
-<%- include("../../layouts/main-bottom.ejs") %>
+
+<%- include("../layouts/main-bottom.ejs") %>

@@ -1,25 +1,17 @@
 import Article from "../../models/article.mjs";
 import { NotFoundError } from "../../utils/errors.mjs";
 
-const DEFULT_PAGE_SIZE = 3;
 
 class ArticleController {
     async list(req, res) {
         const { page = 1 } = req.query
-        const { rows: articles, count: totals } = await Article.findAndCountAll({
+        const data= await Article.findPaginate(req.query.page,{
             include: ["user"],
-            order: [["id", "DESC"]],
-            limit: DEFULT_PAGE_SIZE,
-            offset: (page - 1) * DEFULT_PAGE_SIZE
         })
 
         res.render("admin/article/list", {
             title: "Article List",
-            articles,
-            user: req.user,
-            totals,
-            page: +page,
-            pages: Math.ceil(totals / DEFULT_PAGE_SIZE)
+            ...data
         });
     }
     async get(req, res) {
@@ -51,7 +43,7 @@ class ArticleController {
     async edit(req, res) {
         const { id } = req.params;
 
-        const article = await Article.findByPk(id, { include: ["user"] })
+        const article = await Article.find(id, { include: ["user"] })
         if (!article) {
             throw new NotFoundError("Article Not Found")
         }

@@ -1,7 +1,9 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../config/database.mjs";
+import { BaseModel, sequelize } from "../config/database.mjs";
 
-const Article = sequelize.define('article', {
+class Article extends BaseModel { }
+
+Article.init({
   title: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -10,6 +12,11 @@ const Article = sequelize.define('article', {
     type: DataTypes.TEXT,
     allowNull: false,
   }
-});
+},
+  {
+    sequelize,
+    modelName: "article"
+  })
+
 
 export default Article
