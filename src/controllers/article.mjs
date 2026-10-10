@@ -4,8 +4,6 @@ const DEFULT_PAGE_SIZE = 3;
 
 class ArticleControler{
     async list(req, res) {
-        const { page = 1 } = req.query
-
         const data = await Article.findPaginate(req.query.page,{
             include: ["user"],
             limit: 4,
