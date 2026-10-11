@@ -21,8 +21,8 @@ class ArticleControler {
     async add(req, res) {
         const { title, text } = req.body;
 
-        await Article.create({ title, text, userId: req.user.id })
-        res.redirect("/admin/article/")
+        const article = await Article.create({ title, text, userId: req.user.id })
+        res.json(article)
     }
 }
 

@@ -17,7 +17,7 @@ if (req.url.startsWith("/api")) {
     status: "error",
     title: `Error ${status}`,
     content,
-    stack: process.env.NODE_ENV === "development" ? stack : undefined // نکته امنیتی: عدم نمایش stack در پروداکشن
+    stack: process.env.NODE_ENV === "development" ? stack : undefined
   });
 } else {
   res.status(status).render("error", {
