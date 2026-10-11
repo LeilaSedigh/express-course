@@ -12,7 +12,17 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+},
+  {
+    defaultScope: {
+      attributes: {
+        exclude: ["password"]
+      }
+    },
+    scopes : {
+      withPassword: {}
+    }
+  });
 
 User.hasMany(Article);
 Article.belongsTo(User);

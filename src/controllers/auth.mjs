@@ -18,7 +18,7 @@ class AuthController {
             throw new BadRequestError("Username and Password are required!")
         }
 
-        const user = await User.findOne({ where: { username } })
+        const user = await User.scope("withPassword").findOne({ where: { username } })
         if (!user) {
             throw new BadRequestError("Credential Error")
         }
@@ -31,7 +31,7 @@ class AuthController {
 
         req.session.user = user;
 
-        res.json(user)
+        res.redirect("/")
     }
 
     registerPage(req, res) {
@@ -49,9 +49,8 @@ class AuthController {
             const hashPassword = bcrypt.hashSync(password, 12)
 
             const user = await User.create({ username, password: hashPassword });
-            res.json(user)
             user.setDataValue("password", undefined)
-
+            res.redirect("/")
         } catch (error) {
             if (error?.original?.code === "ER_DUP_ENTRY") {
                 throw new BadRequestError("Username is duplicated!")
