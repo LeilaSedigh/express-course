@@ -10,7 +10,7 @@ class ArticleControler {
     }
     async get(req, res) {
         const { id } = req.params;
-        const article = await Article.findByPk(id, { include: ["user"] })
+        const article = await Article.find(id, { include: ["user"] })
 
         if (!article) {
             throw new NotFoundError("Article Not Found")
@@ -18,12 +18,41 @@ class ArticleControler {
 
         res.json(article)
     }
-    async add(req, res) {
+    async create(req, res) {
         const { title, text } = req.body;
 
         const article = await Article.create({ title, text, userId: req.user.id })
         res.json(article)
     }
+    async update(req, res) {
+        const { id } = req.params;
+        const { title, text } = req.body
+
+        const article = await Article.find(id)
+        if (!article) {
+            throw new NotFoundError("Article Not Found")
+        }
+
+        article.title = title;
+        article.text = text;
+        await article.save()
+
+        res.json(article)
+
+    }
+        async delete(req, res) {
+        const { id } = req.params;
+
+        const article = await Article.find(id)
+
+        if (!article) {
+            throw new NotFoundError("Article Not Found")
+        }
+
+        await article.destroy();
+
+           res.json(article)
+    }
 }
 
-export default new ArticleControler()
+export default new ArticleControler()  
