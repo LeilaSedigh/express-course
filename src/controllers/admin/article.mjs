@@ -4,7 +4,6 @@ import { NotFoundError } from "../../utils/errors.mjs";
 
 class ArticleController {
     async list(req, res) {
-        const { page = 1 } = req.query
         const data= await Article.findPaginate(req.query.page,{
             include: ["user"],
         })

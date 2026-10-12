@@ -3,7 +3,7 @@ import { BadRequestError } from "../utils/errors.mjs";
 import bcrypt from 'bcrypt'
 
 class AuthController {
-    loginPage(req, res) {
+    async loginPage(req, res) {
         if (req.user) {
             return res.redirect("/")
         }

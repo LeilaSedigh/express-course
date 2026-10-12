@@ -22,7 +22,7 @@ export class BaseModel extends Model {
 
     page = +page;
     const {
-      limit = this.DEFAULT_PAGE_SIZE,
+      limit = DEFAULT_PAGE_SIZE,
       offset = (page - 1) * limit,
       order = [["id", "DESC"]],
       ...otherOptions

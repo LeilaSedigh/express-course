@@ -1,7 +1,11 @@
 import Article from "../../models/article.mjs"
+import { NotAuthorizeError, NotFoundError } from "../../utils/errors.mjs";
 
 class ArticleControler {
     async list(req, res) {
+        if(!req.user){
+            throw new NotAuthorizeError()
+        }
         const data = await Article.findPaginate(req.query.page, {
             include: ["user"],
         })
