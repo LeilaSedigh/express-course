@@ -14,7 +14,7 @@
     }
 }
 
- export class ForbiddError extends Error {
+ export class ForbiddenError extends Error {
     status = 403;
 
     constructor(message = "ForbiddError"){
