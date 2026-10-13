@@ -24,10 +24,10 @@ class AuthController {
         user.setDataValue("password", undefined)
 
         const token = jwt.sign(
-            { id: user.id, username: user.username },
+            { id: user.id, username: user.username, role: user.role },
             process.env.JWT_SECRET,
             {
-                expiresIn: "100s"
+                expiresIn: "1000s"
             }
         )
         res.json({

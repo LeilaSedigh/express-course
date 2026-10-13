@@ -12,6 +12,11 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "USER"
+  },
 },
   {
     defaultScope: {
@@ -19,7 +24,7 @@ const User = sequelize.define('user', {
         exclude: ["password"]
       }
     },
-    scopes : {
+    scopes: {
       withPassword: {}
     }
   });

@@ -6,10 +6,18 @@
     }
 }
 
- export class NotAuthorizeError extends Error {
+ export class UnAuthorizeError extends Error {
     status = 401;
 
     constructor(message = "Not AuthorizeError"){
+        super(message)
+    }
+}
+
+ export class ForbiddError extends Error {
+    status = 403;
+
+    constructor(message = "ForbiddError"){
         super(message)
     }
 }

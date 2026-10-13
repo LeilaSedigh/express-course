@@ -1,12 +1,13 @@
 import express from "express";
 import ArticleControler from "../../controllers/api/article.mjs";
+import acl from "../../middlewares/acl.mjs";
 
 const router = express.Router()
 
-router.get("/" , ArticleControler.list)
-router.get("/:id" , ArticleControler.get)
-router.post("/" , ArticleControler.create)
-router.put("/:id" , ArticleControler.update)
-router.delete("/:id" , ArticleControler.delete)
+router.get("/" , acl("WRITER"), ArticleControler.list)
+router.get("/:id" , acl("WRITER"),ArticleControler.get)
+router.post("/" ,  acl("WRITER"),ArticleControler.create)
+router.put("/:id" ,  acl("MODERATOR"),ArticleControler.update)
+router.delete("/:id" , acl("ADMIN"),ArticleControler.delete)
 
 export default router
