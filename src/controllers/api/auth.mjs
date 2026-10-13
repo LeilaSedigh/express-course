@@ -31,7 +31,7 @@ class AuthController {
             }
         )
         res.json({
-            ...user.dataValues(),
+            ...user.dataValues,
             token,
         })
 

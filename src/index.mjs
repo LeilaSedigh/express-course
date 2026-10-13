@@ -37,7 +37,7 @@ app.use(session({
   store: redisStore,
   resave: false,
   saveUninitialized: true,
-  secret: "your-super-secret-key;lfvdf;jkbndf/fvbkdfjn;vsdfvfv",
+  secret: process.env.SESSION_SECRET,
 }))
 
 app.use(auth)
