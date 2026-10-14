@@ -20,9 +20,15 @@ importers:
       express:
         specifier: ^5.2.1
         version: 5.2.1(supports-color@8.1.1)
+      express-jsonschema:
+        specifier: ^1.1.6
+        version: 1.1.6
       express-session:
         specifier: ^1.19.0
         version: 1.19.0(supports-color@8.1.1)
+      jsonschema:
+        specifier: ^1.5.0
+        version: 1.5.0
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3
@@ -513,6 +519,10 @@ packages:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
 
+  express-jsonschema@1.1.6:
+    resolution: {integrity: sha512-umetb7SHkNL5RWJw3zTGHG0bmooaIgdQJ4NW2193iwXfHXrNg9rbm2nS96jUOPj2OSqgcKktINkHg2tbZpB2dQ==}
+    engines: {node: '>= 0.8'}
+
   express-session@1.19.0:
     resolution: {integrity: sha512-0csaMkGq+vaiZTmSMMGkfdCOabYv192VbytFypcvI0MANrp+4i/7yEkJ0sbAEhycQjntaKGzYfjfXQyVb7BHMA==}
     engines: {node: '>= 0.8.0'}
@@ -621,6 +631,9 @@ packages:
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
+
+  jsonschema@1.5.0:
+    resolution: {integrity: sha512-K+A9hhqbn0f3pJX17Q/7H6yQfD/5OXgdrR5UE12gMXCiN9D5Xq2o5mddV2QEcX/bjla99ASsAAQUyMCCRWAEhw==}
 
   jsonwebtoken@9.0.3:
     resolution: {integrity: sha512-MT/xP0CrubFRNLNKvxJ2BYfy53Zkm++5bX9dtuPbqAeQpTVe0MQTFhao8+Cp//EmJp244xt6Drw/GVEGCUj40g==}
@@ -1452,6 +1465,10 @@ snapshots:
 
   etag@1.8.1: {}
 
+  express-jsonschema@1.1.6:
+    dependencies:
+      jsonschema: 1.5.0
+
   express-session@1.19.0(supports-color@8.1.1):
     dependencies:
       cookie: 0.7.2
@@ -1590,6 +1607,8 @@ snapshots:
   is-property@1.0.2: {}
 
   jiti@2.7.0: {}
+
+  jsonschema@1.5.0: {}
 
   jsonwebtoken@9.0.3:
     dependencies:
