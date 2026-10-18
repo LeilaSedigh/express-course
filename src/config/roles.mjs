@@ -1,6 +1,6 @@
 export const ROLE_HIERARCHY = {
-    ADMIN: ["MODERATOR", "USER", "WRITER"],
-    MODERATOR: ["USER", "WRITER"],
+    ADMIN: ["MODERATOR","WRITER", "USER"],
+    MODERATOR: ["WRITER", "USER"],
     WRITER: ["USER"],
     USER: []
 }
