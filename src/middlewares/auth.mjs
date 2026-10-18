@@ -1,23 +1,26 @@
 import jwt from "jsonwebtoken";
-import { BadRequestError } from "../utils/errors.mjs";
+import { UnAuthorizeError } from "../utils/errors.mjs";
 
 export default (req, res, next) => {
-  if (req.header.authorization) {
+    const authorization = req.get("Authorization");
 
-    const token = req.header.authorization
+    if (!authorization) {
+        req.user = req.session?.user;
+        return next();
+    }
+
+    const [scheme, token] = authorization.split(" ");
+
+    if (scheme !== "Bearer" || !token) {
+        return next(new UnAuthorizeError());
+    }
+
     jwt.verify(token, process.env.JWT_SECRET, (error, payload) => {
-      if (error) {
-        throw new BadRequestError(error)
-      }
+        if (error) {
+            return next(new UnAuthorizeError());
+        }
 
-      req.user = payload
-      next()
-    })
-
-  } else {
-    req.user = req.session.user;
-
-    next();
-  }
-
+        req.user = payload;
+        return next();
+    });
 };
