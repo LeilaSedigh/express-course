@@ -1,11 +1,9 @@
 import express from "express";
 import article from "./article.mjs";
 import auth from "./auth.mjs";
-import authenticate from "../../middlewares/auth.mjs";
 
-const router = express.Router();
+const router = express.Router()
+router.use("/article" , article)
+router.use("/" , auth)
 
-router.use("/", auth);
-router.use("/article", authenticate, article);
-
-export default router;
+export default router
