@@ -11,6 +11,11 @@ Article.init({
   text: {
     type: DataTypes.TEXT,
     allowNull: false,
+  },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: false,
+
   }
 },
   {
