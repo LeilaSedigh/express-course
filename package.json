@@ -13,6 +13,8 @@
     "dev:css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css --watch"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.104.4",
+    "antd": "^6.6.6",
     "bcrypt": "^6.0.0",
     "connect-redis": "^10.0.0",
     "ejs": "^6.0.1",
@@ -24,6 +26,7 @@
     "method-override": "^3.0.0",
     "multer": "^2.4.0",
     "mysql2": "^3.24.4",
+    "react-router": "^8.4.0",
     "redis": "^6.2.1",
     "sequelize": "^6.37.8"
   },

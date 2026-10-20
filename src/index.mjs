@@ -5,21 +5,10 @@ import path from "path"
 import overrideMethod from "./middlewares/override-method.mjs";
 import { sequelize } from "./config/database.mjs";
 import session from "express-session";
-import { RedisStore } from 'connect-redis'
-import { createClient } from "redis"
 import auth from "./middlewares/auth.mjs";
+import { redisStore } from "./config/redis.mjs";
 
-// Initialize client.
-const redisClient = createClient({
-  url: "redis://localhost:6377",
-});
-redisClient.connect().catch(console.error)
 
-// initialize store 
-const redisStore = new RedisStore({
-  client: redisClient,
-  prefix: "myapp"
-})
 
 const app = express();
 await sequelize.authenticate();

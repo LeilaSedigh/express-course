@@ -20,16 +20,17 @@ class ArticleControler {
         res.json(article)
     }
     async create(req, res) {
-        const { title, text, image } = req.body;
+        const { title, text,image } = req.body;
 
         const article = await Article.create({ title, text, image, userId: req.user.id })
         res.json(article)
     }
     async update(req, res) {
         const { id } = req.params;
-        const { title, text ,image} = req.body
+        const { title, text, image } = req.body
 
         const article = await Article.find(id)
+
         if (!article) {
             throw new NotFoundError("Article Not Found")
         }

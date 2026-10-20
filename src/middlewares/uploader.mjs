@@ -1,7 +1,7 @@
 import multer from "multer";
 import { BadRequestError } from "../utils/errors.mjs";
 
-const VALID_MIME_TYPE = ['image/png', 'image/jpeg']
+const VALID_MIME_TYPE = ["image/png", "image/jpeg"];
 
 const storage = multer.diskStorage({
     destination: './public/uploads/',
