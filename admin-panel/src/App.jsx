@@ -1,14 +1,15 @@
 import { Layout } from 'antd';
 import Sidebar from './components/general/Sidebar';
 import Login from './components/auth/Login';
+import request from './components/tools/request';
+import { setAccessToken } from './components/tools/utils';
+import AuthContext from './contexts/AuthContext';
+import { useState } from 'react';
 
 const { Header, Footer, Content } = Layout;
 
+
 function App() {
-  // const [user, setUser] = useState({})
-  // const [isLoggedIn, setisLoggedIn] = useState(false)
-  // const [isLoggedIn, setisLoggedIn] = useState(false)
-  // const [loading, setLoading] = useState(true)
   return <Login />
   return (
     <Layout>
@@ -23,3 +24,4 @@ function App() {
 }
 
 export default App
+

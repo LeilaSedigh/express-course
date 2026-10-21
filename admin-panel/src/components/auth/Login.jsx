@@ -3,7 +3,6 @@ import request from '../tools/request';
 
 const Login = () => {
     const onFinish = (value) => {
-        request.post("/api/login", value)
     }
 
     const onFinishFailed = errorInfo => {

@@ -37,6 +37,10 @@ class AuthController {
 
     }
 
+    user(req, res) {
+        return req.user
+    }
+
 }
 
 export default new AuthController()
