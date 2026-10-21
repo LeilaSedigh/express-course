@@ -1,7 +1,11 @@
-import React from 'react'
+import Menu from './Menu'
+import { Layout } from 'antd';
+const { Sider } = Layout;
 
 export default function Sidebar() {
-  return (
-    <div>Sidebar</div>
-  )
+    return (
+        <Sider width="25%">
+            <Menu />
+        </Sider>
+    )
 }
