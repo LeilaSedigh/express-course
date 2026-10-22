@@ -38,7 +38,7 @@ class AuthController {
     }
 
     user(req, res) {
-        return req.user
+        return res.json(req.user)
     }
 
 }

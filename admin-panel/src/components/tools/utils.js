@@ -1,9 +1,12 @@
 
 const ACCESS_TOKEN_NAME = "accessToken"
-// const REFRESH_TOKEN_NAME = "refreshToken"
 
 export function setAccessToken(token) {
     localStorage.setItem(ACCESS_TOKEN_NAME, token)
+}
+
+export function getAccessToken() {
+   return localStorage.getItem(ACCESS_TOKEN_NAME)
 }
 
 export function removeAcssesToken() {

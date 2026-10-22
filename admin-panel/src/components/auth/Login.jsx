@@ -1,31 +1,24 @@
 import { Button, Form, Input } from 'antd';
-import request from '../tools/request';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
-    const onFinish = (value) => {
-    }
+    const [loading, setLoading] = useState(false)
+    const { login } = useAuth()
 
-    const onFinishFailed = errorInfo => {
-        console.log('Failed:', errorInfo);
-    };
+    function onFinish(data) {
+        setLoading(true)
+        login(data).finally(() => { setLoading(false) })
+    }
     return (
-        <Form
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-        >
-            <Form.Item
+        <Form name="basic" onFinish={onFinish}>
+            < Form.Item
                 label="Username"
                 name="username"
                 rules={[{ required: true, message: 'Please input your username!' }]}
             >
                 <Input />
-            </Form.Item>
+            </Form.Item >
 
             <Form.Item
                 label="Password"
@@ -35,11 +28,11 @@ const Login = () => {
                 <Input.Password />
             </Form.Item>
             <Form.Item label={null}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit" loading={loading}>
                     Submit
                 </Button>
             </Form.Item>
-        </Form>
+        </Form >
     )
 };
 export default Login;

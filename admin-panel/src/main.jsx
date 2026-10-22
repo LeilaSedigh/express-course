@@ -1,12 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import { ConfigProvider } from 'antd'
+import AppProvaider from './components/provaiders/AppProvaider.jsx'
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-  <ConfigProvider>
+  <AppProvaider>
     <App />
-  </ConfigProvider>
+  </AppProvaider>
   // </StrictMode>
 )
