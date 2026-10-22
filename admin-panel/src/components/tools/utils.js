@@ -6,7 +6,7 @@ export function setAccessToken(token) {
     localStorage.setItem(ACCESS_TOKEN_NAME, token)
 }
 
-export function removeAcssesToken(token) {
-    localStorage.remove(ACCESS_TOKEN_NAME, token)
+export function removeAcssesToken() {
+    localStorage.remove(ACCESS_TOKEN_NAME)
 
 }
