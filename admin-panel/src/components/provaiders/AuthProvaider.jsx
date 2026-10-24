@@ -35,13 +35,8 @@ export default function AuthProvaider({ children }) {
     }
 
     useEffect(() => {
-        const token = getAccessToken()
+        getAccessToken() ? getUser() : setLoading(false)
 
-        if (token) {
-            getUser()
-        } else {
-            setLoading(false)
-        }
     }, [])
     return (
         <AuthContext.Provider value={{ login, user, loading, isLoggedIn, getUser, logout, removeAcssesToken }}>{children}</AuthContext.Provider>
