@@ -9,8 +9,6 @@ import auth from "./middlewares/auth.mjs";
 import { redisStore } from "./config/redis.mjs";
 import cors from 'cors'
 
-
-
 const app = express();
 await sequelize.authenticate();
 // await sequelize.sync({alter: true});
