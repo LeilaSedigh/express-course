@@ -10,10 +10,11 @@ export default function AuthProvaider({ children }) {
     const [loading, setLoading] = useState(true)
 
     function login(data) {
-        return request.post("/api/login", data).then(({ data }) => {
-            setAccessToken(data.token)
-            getUser()
-        })
+        return request.post("/api/login", data)
+            .then(({ data }) => {
+                setAccessToken(data.token)
+                getUser()
+            })
     }
 
     function getUser() {
@@ -35,8 +36,11 @@ export default function AuthProvaider({ children }) {
 
     useEffect(() => {
         const token = getAccessToken()
+
         if (token) {
             getUser()
+        } else {
+            setLoading(false)
         }
     }, [])
     return (
