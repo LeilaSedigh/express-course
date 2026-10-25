@@ -5,6 +5,10 @@ const request = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
 });
 
+export const requestWithoutAuth = axios.create({
+    baseURL: import.meta.env.VITE_BASE_URL,
+});
+
 request.interceptors.request.use(
     function (config) {
         const accessToken = getAccessToken();

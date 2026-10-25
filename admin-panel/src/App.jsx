@@ -24,7 +24,7 @@ function App() {
           <Layout>
             <Content>
               <Routes>
-                <Route path="/article" element={<ArticleRouter />}></Route>
+                <Route path="/article/*" element={<ArticleRouter />}></Route>
               </Routes>
             </Content>
           </Layout>

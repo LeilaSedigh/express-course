@@ -1,4 +1,4 @@
-import request from '../tools/request'
+import request, { requestWithoutAuth } from '../tools/request'
 import { getAccessToken, removeAcssesToken, setAccessToken } from '../tools/utils'
 import { useState } from 'react'
 import AuthContext from '../../contexts/AuthContext'
@@ -10,7 +10,7 @@ export default function AuthProvaider({ children }) {
     const [loading, setLoading] = useState(true)
 
     function login(data) {
-        return request.post("/api/login", data)
+        return requestWithoutAuth.post("/api/login", data)
             .then(({ data }) => {
                 setAccessToken(data.token)
                 getUser()
