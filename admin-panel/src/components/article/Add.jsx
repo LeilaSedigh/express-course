@@ -4,6 +4,7 @@ import { Form } from "antd";
 import request from "../tools/request"
 import { useNavigate } from 'react-router'
 import { message } from "antd";
+import Uploader from "../utils/uploader";
 
 function createArticle(data) {
   return request.post("/api/article", data)
@@ -40,6 +41,7 @@ export default function Add() {
         >
           <Input.TextArea />
         </Form.Item >
+        <Uploader />
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
             Submit
