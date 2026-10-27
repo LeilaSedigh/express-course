@@ -3,6 +3,7 @@ import request from "../tools/request"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 import { Link } from "react-router"
+import { EyeOutlined } from "@ant-design/icons"
 
 const COLUMS = [
     {
@@ -20,6 +21,17 @@ const COLUMS = [
         dataIndex: 'user',
         key: 'user',
         render: (el) => el.username
+    },
+    {
+        dataIndex: 'id',
+        key: 'action',
+        render: (el) => (
+            <div>
+                <Link to={`/articlr/el`}>
+                <EyeOutlined />
+            </Link>
+            </div >
+        )
     },
 
 ]
