@@ -5,8 +5,8 @@ import { Form } from 'antd';
 
 const { Dragger } = Upload;
 console.log(
-  'Upload URL:',
-  `${import.meta.env.VITE_BASE_URL}/api/file/upload`
+    'Upload URL:',
+    `${import.meta.env.VITE_BASE_URL}/api/file/upload`
 );
 const props = {
     name: 'file',
@@ -28,8 +28,12 @@ const props = {
     },
 };
 
+function normFile(file) {
+    file?.response;
+}
+
 const Uploader = () => (
-    <Form.Item label= "Image" name="Image">
+    <Form.Item label="Image" name="Image" getValueFromEvent={normFile}>
         <Dragger {...props}>
             <p className="ant-upload-drag-icon">
                 <InboxOutlined />

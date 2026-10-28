@@ -27,7 +27,7 @@ const COLUMS = [
         key: 'action',
         render: (el) => (
             <div>
-                <Link to={`/articlr/el`}>
+                <Link to={`/articlr/${el}`}>
                 <EyeOutlined />
             </Link>
             </div >
