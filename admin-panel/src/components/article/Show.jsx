@@ -2,8 +2,9 @@ import { useParams } from "react-router";
 import request from "../tools/request";
 import { useQuery } from "@tanstack/react-query";
 
-async function getArticles(page) {
-    const { data } = await request("/api/article/"+ id)
+async function getArticles(id) {
+    const { data } = await request("/api/article/" + id);
+    console.log("article response:", data);
     return data;
 }
 
