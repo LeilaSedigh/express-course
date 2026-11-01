@@ -1,7 +1,8 @@
 import User from "../../models/user.mjs";
-import { BadRequestError } from "../../utils/errors.mjs";
+import { BadRequestError, UnAuthorizeError } from "../../utils/errors.mjs";
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
+import { generateAccessessToken, generateRefreshToken } from "../../utils/token.mjs";
 
 class AuthController {
     async login(req, res) {
@@ -23,16 +24,13 @@ class AuthController {
 
         user.setDataValue("password", undefined)
 
-        const token = jwt.sign(
-            { id: user.id, username: user.username, role: user.role },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: "1000s"
-            }
-        )
+        const accessToken = generateAccessessToken(user)
+        const refreshToken = generateRefreshToken(user)
+
         res.json({
             ...user.dataValues,
-            token,
+            accessToken,
+            refreshToken
         })
 
     }
@@ -40,7 +38,24 @@ class AuthController {
     user(req, res) {
         return res.json(req.user)
     }
+    async getAccessessToken(req, res, next) {
+        const { refreshToken } = req.body
+
+        jwt.verify(refreshToken, process.env.JWT_SECRET, async (error, payload) => {
+            if (error) {
+                next (new UnAuthorizeError(error));
+            }
+
+            const user = await User.findByPk(payload.id)
+
+            const accessToken = generateAccessessToken(user)
+            res.json({
+                accessToken,
+            })
+        });
+    }
 
 }
+
 
 export default new AuthController()

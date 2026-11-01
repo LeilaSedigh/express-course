@@ -30,7 +30,7 @@ export default function Show() {
         <div>
             <div> title : {data.title}</div>
             <div> auther : {data.user?.username}</div>
-            <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} />
+            <img  src={`${import.meta.env.VITE_BASE_URL}/${data.image}`}/>
         </div>
     )
 }

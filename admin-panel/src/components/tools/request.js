@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken } from "./utils";
+import { getAccessToken, getRefreshToken } from "./utils";
 
 const request = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
@@ -25,10 +25,16 @@ request.interceptors.request.use(
 );
 
 request.interceptors.response.use(
-    function (response) {
+    function onFulfilled(response) {
         return response;
     },
-    function (error) {
+    async function onRejected (error) {
+
+        if(error.status === 401){
+            await requestWithoutAuth.post("/api/get-access-token" , {
+                refreshToken: getRefreshToken()
+            })
+        }
         return Promise.reject(error);
     }
 );
