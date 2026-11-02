@@ -1,5 +1,6 @@
 import Article from "../../models/article.mjs"
 import { NotFoundError } from "../../utils/errors.mjs";
+import { log } from "../../utils/logger.mjs";
 
 class ArticleControler {
     async list(req, res) {
@@ -20,9 +21,11 @@ class ArticleControler {
         res.json(article)
     }
     async create(req, res) {
-        const { title, text,image } = req.body;
+        const { title, text, image } = req.body;
 
         const article = await Article.create({ title, text, image, userId: req.user.id })
+        log({ message: "article: create", metadata: { article, usre: req.user } })
+
         res.json(article)
     }
     async update(req, res) {

@@ -1,7 +1,13 @@
 import { JsonSchemaValidation } from "express-jsonschema";
+import { log } from "../utils/logger.mjs";
 
 export default (error, req, res, next) => {
   console.log(error.stack);
+  log({
+    level: "error",
+    messege: error.message,
+    metadata: { user: req.user, url: req.url, method: req.method }
+  })
 
   if (error instanceof JsonSchemaValidation) {
     return res.status(400).json({

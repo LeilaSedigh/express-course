@@ -1,5 +1,6 @@
 import Article from "../../models/article.mjs";
 import { NotFoundError } from "../../utils/errors.mjs";
+import { log } from "../../utils/logger.mjs";
 
 
 class ArticleController {
@@ -40,7 +41,8 @@ class ArticleController {
         const { title, text } = req.body;
         const image = req.file?.path?.split("\\").splice(1).join("/")
 
-        await Article.create({ title, text, image, userId: req.user.id })
+        const article = await Article.create({ title, text, image, userId: req.user.id })
+        log({ message: "article: create", metadata: { article } })
         res.redirect("/admin/article/")
     }
     async edit(req, res) {

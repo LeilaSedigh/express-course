@@ -29,7 +29,9 @@
     "mysql2": "^3.24.4",
     "react-router": "^8.4.0",
     "redis": "^6.2.1",
-    "sequelize": "^6.37.8"
+    "sequelize": "^6.37.8",
+    "winston": "^3.19.0",
+    "winston-mongodb": "^7.0.1"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
