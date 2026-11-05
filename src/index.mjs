@@ -8,6 +8,8 @@ import session from "express-session";
 import auth from "./middlewares/auth.mjs";
 import { redisStore } from "./config/redis.mjs";
 import cors from 'cors'
+import {Server as SocketServer} from 'socket.io'
+import http from 'http'
 
 const app = express();
 await sequelize.authenticate();
@@ -33,8 +35,18 @@ app.use(overrideMethod)
 app.use(routes);
 app.use(errorHandler);
 
+const server = http.createServer(app)
+
+const io = new SocketServer(server,{
+  cors:{
+    origin:"*",
+    methods:["Get", "Post"]
+  }
+})
+
+io.on("connection" , socket => console.log("Salam" ,socket.id))
 const PORT = 3000;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is Runing Port", PORT);
 });

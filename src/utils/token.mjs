@@ -5,7 +5,7 @@ export function generateAccessessToken(user) {
         { id: user.id, username: user.username, role: user.role },
         process.env.JWT_SECRET,
         {
-            expiresIn: "100s"
+            expiresIn: "1000s"
         }
     )
 }
@@ -15,7 +15,7 @@ export function generateRefreshToken(user) {
         { id: user.id, username: user.username },
         process.env.JWT_SECRET,
         {
-            expiresIn: "1000s"
+            expiresIn: "30000s"
         }
     )
 }
