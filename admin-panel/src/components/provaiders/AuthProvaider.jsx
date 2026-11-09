@@ -1,5 +1,5 @@
 import request, { requestWithoutAuth } from '../tools/request'
-import { getAccessToken, removeAcssesToken, setAccessToken, setRefreshToken } from '../tools/utils'
+import { getAccessToken, removeAcssesToken, removeRefreshToken, setAccessToken, setRefreshToken } from '../tools/utils'
 import { useState } from 'react'
 import AuthContext from '../../contexts/AuthContext'
 import { useEffect } from 'react'
@@ -32,6 +32,7 @@ export default function AuthProvaider({ children }) {
     function logout() {
         setisLoggedIn(false)
         removeAcssesToken()
+        removeRefreshToken()
 
     }
 

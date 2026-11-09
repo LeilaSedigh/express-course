@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { UnAuthorizeError } from "../utils/errors.mjs";
 
 export default (req, res, next) => {
-    const authorization = req.get("Authorization");
+    const authorization = req.headers.authorization;
 
     if (!authorization) {
         req.user = req.session?.user;
@@ -24,4 +24,3 @@ export default (req, res, next) => {
         return next();
     });
 };
-

@@ -8,8 +8,9 @@ import session from "express-session";
 import auth from "./middlewares/auth.mjs";
 import { redisStore } from "./config/redis.mjs";
 import cors from 'cors'
-import {Server as SocketServer} from 'socket.io'
+import { Server as SocketServer } from 'socket.io'
 import http from 'http'
+import chat from "./chat.mjs";
 
 const app = express();
 await sequelize.authenticate();
@@ -37,14 +38,22 @@ app.use(errorHandler);
 
 const server = http.createServer(app)
 
-const io = new SocketServer(server,{
-  cors:{
-    origin:"*",
-    methods:["GET", "POST"]
+const io = new SocketServer(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
   }
 })
 
-io.on("connection" , socket => console.log("Salam" ,socket.id))
+io.use((socket, next) => {
+  try {
+    auth(socket.request, {}, next)
+  } catch(e) {
+    console.log(e)
+  }
+})
+
+io.on("connection", (socket) => chat(socket, io))
 const PORT = 3000;
 
 server.listen(PORT, () => {

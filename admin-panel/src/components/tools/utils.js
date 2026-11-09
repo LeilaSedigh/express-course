@@ -11,8 +11,7 @@ export function getAccessToken() {
 }
 
 export function removeAcssesToken() {
-    localStorage.remove(ACCESS_TOKEN_NAME)
-
+    localStorage.removeItem(ACCESS_TOKEN_NAME);
 }
 
 
@@ -25,6 +24,5 @@ export function getRefreshToken() {
 }
 
 export function removeRefreshToken() {
-    localStorage.remove(REFRESH_TOKEN_NAME)
-
+    localStorage.removeItem(REFRESH_TOKEN_NAME);
 }

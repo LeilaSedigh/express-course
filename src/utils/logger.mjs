@@ -8,9 +8,9 @@ export const logger = winston.createLogger({
         // new winston.transports.File({ filename: 'error.log', level: 'error' }),
         // new winston.transports.File({ filename: 'combined.log' }),
         new winston.transports.MongoDB({
-            db: 'mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/process.env.MONGODB_NAME',
-            collection: process.env.MONGODB_COLLECTION
-        })
+            db: `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_NAME}`,
+            collection: process.env.MONGODB_COLLECTION,
+        }),
     ],
 })
 
