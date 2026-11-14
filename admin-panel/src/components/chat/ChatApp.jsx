@@ -1,6 +1,10 @@
 import io from "socket.io-client";
 import { getAccessToken } from "../tools/utils";
-import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import request from "../tools/request";
+import './chat.css'
+import { useState } from "react";
+import Chat from "./chat";
 
 const socket = io(import.meta.env.VITE_BASE_URL, {
   extraHeaders: {
@@ -9,11 +13,27 @@ const socket = io(import.meta.env.VITE_BASE_URL, {
 });
 
 export default function ChatApp() {
-  useEffect(() => {
-    socket.emit("message", "Hello server")
-    socket.on("message", (data) => console.log("Salam", data));
 
-  }, []);
+  const [channel, setChannel] = useState()
 
-  return <div>ChatApp</div>;
+  const { data: users } = useQuery({
+    queryKey: ["person"],
+    queryFn: () => request("/api/person").then(({ data }) => data)
+  })
+
+  console.log(channel)
+
+  return (
+    <div className="chat-app">
+      <div className="users">
+        {users?.map(user => (
+          <div className={`user ${user.id === channel?.id ? "active" : ""}`} key={user.id}
+            onClick={() => setChannel(user)}
+          >
+            {user.username}
+          </div>))}
+      </div>
+      {channel ? <Chat key={channel.id} channel={channel} socket={socket} /> : "Please Select a user"}
+    </div>
+  )
 }

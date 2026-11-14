@@ -1,0 +1,145 @@
+.chat-app {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  height: 70vh;
+  margin: 24px auto;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+/* لیست کاربران */
+.chat-app .users {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 200px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.users .user {
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.users .user:hover {
+  background: #e9eef5;
+}
+
+.users .user.active {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+/* کادر چت */
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+/* پیام‌ها */
+.message-wrapper {
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.message-list .message {
+  max-width: 80%;
+  padding: 10px 14px;
+  color: #334155;
+  background: #f1f5f9;
+  border-radius: 12px 12px 12px 3px;
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  unicode-bidi: plaintext;
+}
+
+/* فرم ارسال */
+.chat-box > form {
+  padding: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.chat-box .chat-form {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.chat-box .chat-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+.chat-box .chat-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-box .chat-input .ant-input,
+.chat-box .chat-form .ant-btn {
+  height: 40px;
+}
+
+/* موبایل */
+@media (max-width: 600px) {
+  .chat-app {
+    flex-direction: column;
+    gap: 12px;
+    height: 80vh;
+    margin: 12px auto;
+    padding: 12px;
+  }
+
+  .chat-app .users {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .users .user {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .message-wrapper {
+    padding: 12px;
+  }
+}
+.message-list .message.owner {
+  align-self: flex-end;
+  color: #fff;
+  background: #2563eb;
+  border-radius: 12px 12px 3px 12px;
+}

@@ -16,7 +16,9 @@ const app = express();
 await sequelize.authenticate();
 // await sequelize.sync({alter: true});
 await sequelize.sync();
-app.use(cors("*"))
+app.use(cors({
+  origin: "*",
+}));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -48,7 +50,7 @@ const io = new SocketServer(server, {
 io.use((socket, next) => {
   try {
     auth(socket.request, {}, next)
-  } catch(e) {
+  } catch (e) {
     console.log(e)
   }
 })
