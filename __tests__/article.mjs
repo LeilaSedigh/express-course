@@ -73,6 +73,31 @@ describe("Article", () => {
         expect(response.statusCode).toBe(200);
         checkArticle(response.body);
     });
+    test("update article", async () => {
+        const response = await request
+            .put("/api/article/" + article.id)
+            .set("Authorization", `Bearer ${token}`)
+            .send({ ...article, title: "New Title", text: "New Text" });
+
+        expect(response.statusCode).toBe(200);
+        expect(response.body.title).toBe("New Title");
+        expect(response.body.text).toBe("New Text");
+        expect(response.body.id).toBe(article.id);
+    });
+    test("delete article", async () => {
+        const response = await request
+            .delete("/api/article/" + article.id)
+            .set("Authorization", `Bearer ${token}`)
+        expect(response.statusCode).toBe(200);
+
+    });
+    test("get deleted article", async () => {
+        const response = await request
+            .get("/api/article/" + article.id)
+            .set("Authorization", `Bearer ${token}`)
+
+        expect(response.statusCode).toBe(404);
+    });
 });
 function checkArticle(article) {
     expect(article.title).toBe(fakeArticle.title);
