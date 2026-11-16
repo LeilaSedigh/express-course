@@ -2,7 +2,7 @@ import { JsonSchemaValidation } from "express-jsonschema";
 import { log } from "../utils/logger.mjs";
 
 export default (error, req, res, next) => {
-  console.log(error.stack);
+  // console.log(error.stack);
   log({
     level: "error",
     messege: error.message,

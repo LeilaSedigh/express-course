@@ -26,7 +26,7 @@ class ArticleControler {
         const article = await Article.create({ title, text, image, userId: req.user.id })
         log({ message: "article: create", metadata: { article, usre: req.user } })
 
-        res.json(article)
+        res.status(201).json(article)
     }
     async update(req, res) {
         const { id } = req.params;
