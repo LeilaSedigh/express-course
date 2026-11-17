@@ -1,25 +1,78 @@
 <%- include("../../layouts/main-top.ejs") %>
-<div>
-  <div class="flex gap-2">
-    <div>Auther</div>
-    <div><%= article.user.username %></div>
-  </div>
-  <form action="/admin/article/<%= article.id %>" method="post">
-    <input type="hidden" value="PUT" name="_method" />
-    <div class="flex flex-col gap-5">
-      <div class="flex justify-between w-[50%]">
-        <label for="title">Title</label>
-        <input id="title" type="text" name="title" class="border border-blue-300 p-2" value="<%= article.title %>" />
-      </div>
 
-      <div class="flex justify-between w-[50%]">
-        <label for="text">Text</label>
-        <textarea id="title" type="text" name="text" class="border border-blue-300 p-2"><%= article.text %></textarea>
-      </div>
-      <div>
-        <button type="submit" class="border bg-blue-500 px-5 py-2 rounded text-white">Submit</button>
-      </div>
+<div class="mx-auto w-full max-w-2xl py-2">
+  <div class="mb-6 flex items-center gap-3 rounded-xl bg-slate-50 p-4">
+    <div
+      class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-600"
+      aria-hidden="true"
+    >
+      <%= article.user.username.charAt(0).toUpperCase() %>
+    </div>
+
+    <div class="min-w-0">
+      <p class="text-xs text-slate-400">Author</p>
+      <p class="mt-1 text-sm font-medium text-slate-700 break-words">
+        <%= article.user.username %>
+      </p>
+    </div>
+  </div>
+
+  <form
+    action="/admin/article/<%= article.id %>"
+    method="post"
+    class="flex flex-col gap-6"
+  >
+    <input type="hidden" name="_method" value="PUT" />
+
+    <div class="flex flex-col gap-2">
+      <label for="title" class="text-sm font-medium text-slate-700">
+        Article title
+      </label>
+
+      <input
+        id="title"
+        type="text"
+        name="title"
+        value="<%= article.title %>"
+        placeholder="Enter your article title"
+        required
+        class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label for="text" class="text-sm font-medium text-slate-700">
+        Article content
+      </label>
+
+      <textarea
+        id="text"
+        name="text"
+        rows="8"
+        placeholder="Write your article here..."
+        required
+        class="w-full resize-y rounded-lg border border-slate-300 bg-white px-3 py-3 text-base leading-7 text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+      ><%= article.text %></textarea>
+    </div>
+
+    <div
+      class="flex flex-col gap-3 border-t border-slate-100 pt-5 sm:flex-row sm:justify-end"
+    >
+      <a
+        href="/admin/article/<%= article.id %>"
+        class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-200 px-5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="inline-flex h-11 cursor-pointer items-center justify-center rounded-lg bg-blue-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-blue-800"
+      >
+        Save changes
+      </button>
     </div>
   </form>
 </div>
+
 <%- include("../../layouts/main-bottom.ejs") %>

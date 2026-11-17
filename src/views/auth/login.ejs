@@ -1,19 +1,83 @@
 <%- include("../layouts/main-top.ejs") %>
-<div>
-  <form action="/login" method="post">
-    <div class="flex flex-col gap-5">
-      <div class="flex justify-between w-[50%]">
-        <label for="username">Username</label>
-        <input id="username" type="text" name="username" class="border border-blue-300 p-2" />
-      </div>
-      <div class="flex justify-between w-[50%]">
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" class="border border-blue-300 p-2" />
-      </div>
-      <div>
-        <button type="submit" class="border bg-blue-500 px-5 py-2 rounded text-white">Login</button>
-      </div>
+
+<div class="flex flex-1 items-center justify-center py-6 sm:py-10">
+  <section class="w-full max-w-sm" aria-labelledby="login-title">
+    <div class="mb-8">
+      <p class="mb-2 text-sm font-semibold text-blue-600">
+        Welcome back
+      </p>
+
+      <h1
+        id="login-title"
+        class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl"
+      >
+        Sign in to your account
+      </h1>
+
+      <p class="mt-3 text-sm leading-6 text-slate-500">
+        Enter your username and password to continue.
+      </p>
     </div>
-  </form>
+
+    <form action="/login" method="post" class="flex flex-col gap-5">
+      <div class="flex flex-col gap-2">
+        <label
+          for="username"
+          class="text-sm font-medium text-slate-700"
+        >
+          Username
+        </label>
+
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Enter your username"
+          autocomplete="username"
+          autocapitalize="none"
+          spellcheck="false"
+          required
+          class="h-11 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+        />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label
+          for="password"
+          class="text-sm font-medium text-slate-700"
+        >
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+          class="h-11 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="mt-1 flex h-11 w-full items-center justify-center rounded-lg bg-blue-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-blue-800"
+      >
+        Sign in
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-slate-500">
+      Don’t have an account?
+      <a
+        href="/register"
+        class="rounded font-semibold text-blue-600 transition-colors hover:text-blue-700 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+      >
+        Create account
+      </a>
+    </p>
+  </section>
 </div>
+
 <%- include("../layouts/main-bottom.ejs") %>

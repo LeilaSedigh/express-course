@@ -1,15 +1,41 @@
 <%- include("../../layouts/main-top.ejs") %>
-<div>
-  <p>
-    <%= article.text %>
-  </p>
-  <div class="flex gap-2">
-    <div>Auther</div>
-    <div><%= article.user.username %></div>
+
+<article class="mx-auto w-full max-w-3xl">
+  <div class="mb-6 flex items-center gap-3">
+    <div
+      class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-semibold text-blue-600"
+      aria-hidden="true"
+    >
+      <%= article.user.username.charAt(0).toUpperCase() %>
+    </div>
+
+    <div class="min-w-0">
+      <p class="text-xs text-slate-400">Author</p>
+      <p class="mt-1 text-sm font-medium text-slate-700 break-words">
+        <%= article.user.username %>
+      </p>
+    </div>
   </div>
-  <hr class="my-5" />
-  <div class="flex gap-2 flex-col">
-    <a href="/admin/article/edit/<%= article.id %>" class="text-blue-600 underline">Edit</a>
-    <a href="/admin/article" class="text-blue-600 underline">Back to list </a>
+
+  <p class="whitespace-pre-line text-base leading-8 text-slate-600 break-words"><%= article.text %></p>
+
+  <div
+    class="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <a
+      href="/admin/article"
+      class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-200 px-5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+    >
+      Back to list
+    </a>
+
+    <a
+      href="/admin/article/edit/<%= article.id %>"
+      class="inline-flex h-11 items-center justify-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+    >
+      Edit article
+    </a>
   </div>
-  <%- include("../../layouts/main-bottom.ejs") %>
+</article>
+
+<%- include("../../layouts/main-bottom.ejs") %>
